@@ -69,7 +69,7 @@ Service.plugin.jms.download=true        <----- Uncomment this line
 Next, install the management agent you downloaded in previous steps:
 
 ```
-$ sudo sudo rpm -ihv oracle.mgmt_agent.rpm 
+$ sudo rpm -ihv oracle.mgmt_agent.rpm 
 Verifying...                          ################################# [100%]
 Preparing...                          ################################# [100%]
 Checking pre-requisites
