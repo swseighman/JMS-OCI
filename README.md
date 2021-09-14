@@ -128,6 +128,34 @@ In the future agent can be started by directly running: sudo systemctl start mgm
 Please make sure that you delete /tmp/AgentKey.txt or store it in secure location.
 ```
 
+To ensure the agent starts after each system reboot, enable the service:
+
+```
+$ sudo systemctl enable mgmt_agent
+[sudo] password for user: 
+```
+
+Notice the status indicates the service is **enabled**:
+```
+$ sudo systemctl status mgmt_agent
+● mgmt_agent.service - mgmt_agent
+   Loaded: loaded (/etc/systemd/system/mgmt_agent.service; enabled; vendor preset: disabled)
+   Active: active (running) since Tue 2021-09-14 10:45:19 EDT; 5h 31min ago
+ Main PID: 6733 (wrapper)
+    Tasks: 48 (limit: 72639)
+   Memory: 269.2M
+   CGroup: /system.slice/mgmt_agent.service
+           ├─6733 /opt/oracle/mgmt_agent/agent_inst/bin/./wrapper /opt/oracle/mgmt_agent/agent_inst/bin/..>
+           └─6932 /usr/lib/jvm/jdk1.8.0_271/bin/java -Dorg.tanukisoftware.wrapper.WrapperSimpleApp.maxStar>
+
+Sep 14 10:45:07 ol83-srv.example.com systemd[1]: Starting mgmt_agent...
+Sep 14 10:45:07 ol83-srv.example.com agentcore[6657]: Starting mgmt_agent...
+Sep 14 10:45:14 ol83-srv.example.com agentcore[6657]: Waiting for mgmt_agent.........
+Sep 14 10:45:19 ol83-srv.example.com agentcore[6657]: .....running: PID:6733
+Sep 14 10:45:19 ol83-srv.example.com systemd[1]: Started mgmt_agent.
+
+```
+
 Configure Java Usage Tracker using the JMS plugin setup by executing the following commands:
 
 ```
