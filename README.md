@@ -101,7 +101,7 @@ Executing install
 Agent install successful
 ```
 
-After the agent is installed, run the script as instructed pointing `/opts` to the Agent key in the `/tmp` directory:
+After the agent is installed, run the script as instructed pointing `opts=` to the Agent key in the `/tmp` directory:
 
 ```
 $ sudo /opt/oracle/mgmt_agent/agent_inst/bin/setup.sh opts=/tmp/AgentKey.txt
