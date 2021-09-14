@@ -43,7 +43,7 @@ After downloading the **Production_Servers_Key.txt** file, make certain the `Ser
 
 ```
 $ sudo cat /tmp/Production_Servers_Key.txt
-########################################################################
+﻿########################################################################
 # Please refer the following Management Agent Installation Guide for more details.
 #
 # https://docs.cloud.oracle.com/iaas/management-agents/index.html
@@ -53,24 +53,17 @@ $ sudo cat /tmp/Production_Servers_Key.txt
 # location.
 #
 ########################################################################
-ManagementAgentInstallKey = xxxx-your-key
+ManagementAgentInstallKey = Mi4wLHVzLWFzaGJ1cm4tMSxvxxx
 AgentDisplayName = 
 #Please uncomment the below tags properties and provide values as needed
 #FreeFormTags = [{"<key1>":"<value1>"}, {"<key2>":"<value2>"}]
-#DefinedTags = [{"namespace1":{"<key1>":"<value1>"}}, {"namespace2":{"<key2>":"<value2>"}}]
+DefinedTags = [{"jms":{"fleet_ocid":"ocid1.jmsfleet.oc1.iad.xxx"}}]
 ProxyHost = 
 ProxyPort = 
 ProxyUser = 
 ProxyPassword = 
 ProxyRealm = 
-CredentialWalletPassword = 
-#Service.plugin.apm.download=true
-#Service.plugin.appmgmt.download=true
-#Service.plugin.datasafe.download=true
-Service.plugin.jms.download=true        <----- Uncomment this line
-#Service.plugin.dbaas.download=true
-#Service.plugin.opsiHost.download=true
-#Service.plugin.logan.download=true
+Service.plugin.jms.download=true   <--- Should be uncommented
 ```
 
 Next, install the management agent you downloaded in previous steps:
