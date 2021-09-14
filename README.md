@@ -27,15 +27,22 @@ Next, download the Agent key. Once again, on the **Production Servers** line ent
 
 ![](images/jms-oci-5.png)
 
-In the dropdown, choose **AgentKey**:
+In the dropdown, choose **AgentKey**, then **Select**:
 
 ![](images/jms-oci-3.png)
 
+Choose **Download**, then **Close**.
 
-After downloading the **AgentKey.txt** file, make certain the `Service.plugin.jms.download=true` property is uncommented:
+![](images/jms-oci-12.png)
+
+Save the file:
+
+![](images/jms-oci-11.png)
+
+After downloading the **Production_Servers_Key.txt** file, make certain the `Service.plugin.jms.download=true` property is uncommented:
 
 ```
-$ sudo cat /tmp/AgentKey.txt
+$ sudo cat /tmp/Production_Servers_Key.txt
 ########################################################################
 # Please refer the following Management Agent Installation Guide for more details.
 #
@@ -104,7 +111,7 @@ Agent install successful
 After the agent is installed, run the script as instructed pointing `opts=` to the Agent key in the `/tmp` directory:
 
 ```
-$ sudo /opt/oracle/mgmt_agent/agent_inst/bin/setup.sh opts=/tmp/AgentKey.txt
+$ sudo /opt/oracle/mgmt_agent/agent_inst/bin/setup.sh opts=/tmp/Production_Servers_Key.txt
 
 Executing configure
 
@@ -125,7 +132,7 @@ Deploying service plugin(s)...Done.
 Agent setup completed and the agent is running.
 In the future agent can be started by directly running: sudo systemctl start mgmt_agent
 
-Please make sure that you delete /tmp/AgentKey.txt or store it in secure location.
+Please make sure that you delete /tmp/Production_Servers_Key.txt or store it in secure location.
 ```
 
 To ensure the agent starts after each system reboot, enable the service:
