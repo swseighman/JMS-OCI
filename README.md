@@ -11,9 +11,9 @@ Make certain you're using the proper **Compartment**:
 
 ![](images/jms-oci-8.png)
 
-On the **Production Servers** line entry, click on the dots and choose **Download management agent**:
+In this example, the **Production Servers Fleet** contains the resources we need.  On the **Production Servers** line entry, click on the dots and choose **Download management agent**:
 
-![](images/jms-oci-5.png)
+![](//wsl$/Fedora/home/sseighma/code/JMS-OCI/images/jms-oci-5.png)
 
 Click on the link **Download the management agent software**:
 
