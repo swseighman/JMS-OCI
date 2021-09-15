@@ -65,7 +65,7 @@ ProxyPassword =
 ProxyRealm = 
 Service.plugin.jms.download=true   <--- Should be uncommented
 ```
-You should also see a `fleet_ocid` value in the **DefineTags** entry.
+You should also see a `fleet_ocid` value in the **DefinedTags** entry.
 
 Move the **Production_Servers_Key.txt** file to `/tmp`:
 
