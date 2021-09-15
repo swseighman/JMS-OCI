@@ -70,7 +70,7 @@ You should also see a `fleet_ocid` value in the **DefinedTags** entry.
 Move the **Production_Servers_Key.txt** file to `/tmp`:
 
 ```
-$ sudo cp Production_Servers_Key.txt /tmp
+$ sudo mv Production_Servers_Key.txt /tmp
 ```
 
 Next, install the management agent you downloaded in previous steps:
