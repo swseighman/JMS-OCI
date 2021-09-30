@@ -1,6 +1,10 @@
-# Installing the Java Management Service Agent on Linux
+# Installing the Java Management Service Agent
 
+Java Management Service offers a single pane of glass to manage Java deployments across the enterprise. Java Management Service will provide continuous insight based on telemetry data from the JVM to analyze security, performance, compliance, and efficiency metrics.
 
+In this example, we'll install a management agent on your host (Linux or Windows) and configure the JMS plugin.
+
+#### Linux Installation Instructions
 First, download the Management Agent.
 
 Login to your JMS instance, from the hamburger choose **Observability & Management** -> **Java Management**.
@@ -193,4 +197,147 @@ $ sudo cat /var/log/java/usagetracker.log
 "VM start","Tue Sep 14 10:56:59 EDT 2021","my-server.example.com/10.0.1.1","FlightRecorder","/opt/graalvm-ee-java11-21.2.0.1","11.0.12","11.0.12+8-LTS-jvmci-21.2-b08","Oracle Corporation","Oracle Corporation","Linux","amd64","5.4.17-2102.204.4.4.el8uek.x86_64","-XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:ThreadPriorityPolicy=1 ",".","java.runtime.name='Java(TM) SE Runtime Environment' "
 ```
 
+#### Windows Installation Instructions
+
+The instructions for the Windows agent installation are fairly similar.
+
+First, download the Management Agent.
+
+Login to your JMS instance, from the hamburger choose **Observability & Management** -> **Java Management**.
+
+![](images/jms-oci-6.png)
+
+Make certain you're using the proper **Compartment**:
+
+![](images/jms-oci-8.png)
+
+In this example, the **Production Clients Fleet** contains the resources we need.  On the **Production Clients** line entry, click on the dots and choose **Download management agent**:
+
+![](images/jms-oci-15.png)
+
+Click on the link **Download the management agent software**:
+
+![](images/jms-oci-4.png)
+
+Choose the **Windows-X86_64** agent:
+
+![](images/jms-oci-13.png)
+
+Once again, choose **Download management agent** from the **Production Clients** line entry:
+
+![](images/jms-oci-15.png)
+
+Choose **AgentKey** from the dropdown, click **Select**:
+
+![](images/jms-oci-16.png)
+
+Click on the **Download Install Key** button:
+
+![](images/jms-oci-17.png)
+
+The key file will be downloaded to your local system (note the download directory).
+
+**IMPORTANT:** You should be executing the following commands as **Administrator** so it's recommended you launch a terminal or PowerShell instance using **Run as Administrator**.
+
+On your client system, unzip the previously downloaded `oracle_mgmt_agent.zip` file.
+
+Move/copy the **Production_Clients_Key.txt** file to **C:\Windows\Temp**:
+
+```
+C:\> copy <path-to-download-dir>Production_Clients_Key.txt C:\Windows\Temp
+```
+
+> ***Note for Windows 10 Pro Users*** 
+>
+> If you're using a Windows 10 **Pro** client, you'll also need to set an environment variable `OVERRIDE_VERSION_CHECK` with value `true`
+>
+> ```
+> C:\> setx OVERRIDE_VERSION_CHECK "true"
+> ```
+> 
+> You need to restart the Command Prompt/PowerShell for the changes to take effect.
+> 
+> After restarting the Command Prompt/PowerShell, check to confirm the environment variable was set.
+> 
+> From PowerShell:
+> ```
+> C:\> echo $env:OVERRIDE_VERSION_CHECK
+> true
+> ```
+> 
+> From command prompt:
+> ```
+> C:\> echo %OVERRIDE_VERSION_CHECK%
+> true
+> ```
+> 
+
+
+You'll need to use **JDK 8 (u162 or higher)** to install the agent:
+
+```
+C:\> java -version
+java version "1.8.0_281"
+Java(TM) SE Runtime Environment (build 1.8.0_281-b09)
+Java HotSpot(TM) 64-Bit Server VM (build 25.281-b09, mixed mode)
+```
+
+Next, execute the `installer.bat` file and pass the location of the **Production_Clients_Key.txt** file (**C:\Windows\Temp**):
+```
+C:\> .\installer.bat C:\Windows\Temp\Production_Clients_Key.txt
+Found OVERRIDE_VERSION_CHECK environment variable. This flag allows to install Agent on non-supported platforms.
+Please remove this environment variable and retry agent install if you want to use only supported platforms.
+
+Checking pre-requisites
+
+        Checking if previous agent service exists
+        Checking if C:\Oracle\mgmt_agent\agent_inst directory exists
+        Checking Java version
+                Java version: 1.8.0_281 found at C:\Progra~1\Java\jdk1.8.0_281
+        Checking if C:\Oracle\mgmt_agent\210918.1427 directory exists
+
+Executing install
+        Unpacking software zip
+        Copying files to destination dir (C:\Oracle\mgmt_agent)
+        Initializing software from template
+        Checking if JavaScript engine is available to use
+        Creating mgmt_agent service
+
+Agent install successful
+
+Executing configure
+
+        Parsing input response file
+        Validating install key
+        Generating communication wallet
+        Generating security artifacts
+        Registering Management Agent
+                Found service plugin(s): [jms]
+
+The mgmt_agent service is starting...
+The mgmt_agent service was started successfully.
+
+Starting plugin deployment for: [jms]
+Deploying service plugin(s)...Done.
+        jms : Successfully deployed service plugin
+
+Agent setup completed and the agent is running
+In the future agent can be started by directly running: NET START mgmt_agent
+Please make sure that you delete C:\Windows\Temp\Production_Clients_Key.txt or store it in secure location.
+```
+
+After the installer completes, you can confirm the agent service is running:
+
+```
+C:\> sc.exe query mgmt_agent
+
+SERVICE_NAME: mgmt_agent
+        TYPE               : 10  WIN32_OWN_PROCESS
+        STATE              : 4  RUNNING
+                                (STOPPABLE, NOT_PAUSABLE, ACCEPTS_SHUTDOWN)
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0
+```
 That's it!  Your system will now begin producing data that JMS will use to help with Java insights.
