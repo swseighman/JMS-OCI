@@ -4,7 +4,7 @@ Java Management Service offers a single pane of glass to manage Java deployments
 
 In this example, we'll install a management agent on your host (Linux or Windows) and configure the JMS plugin.
 
-#### Linux Installation Instructions
+### Linux Installation Instructions
 First, download the Management Agent.
 
 Login to your JMS instance, from the hamburger choose **Observability & Management** -> **Java Management**.
@@ -197,7 +197,7 @@ $ sudo cat /var/log/java/usagetracker.log
 "VM start","Tue Sep 14 10:56:59 EDT 2021","my-server.example.com/10.0.1.1","FlightRecorder","/opt/graalvm-ee-java11-21.2.0.1","11.0.12","11.0.12+8-LTS-jvmci-21.2-b08","Oracle Corporation","Oracle Corporation","Linux","amd64","5.4.17-2102.204.4.4.el8uek.x86_64","-XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCIProduct -XX:-UnlockExperimentalVMOptions -XX:ThreadPriorityPolicy=1 ",".","java.runtime.name='Java(TM) SE Runtime Environment' "
 ```
 
-#### Windows Installation Instructions
+### Windows Installation Instructions
 
 The instructions for the Windows agent installation are fairly similar.
 
