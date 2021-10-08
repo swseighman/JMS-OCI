@@ -340,4 +340,6 @@ SERVICE_NAME: mgmt_agent
         CHECKPOINT         : 0x0
         WAIT_HINT          : 0x0
 ```
+
 That's it!  Your system will now begin producing data that JMS will use to help with Java insights.
+
