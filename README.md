@@ -5,7 +5,7 @@ Java Management Service offers a single pane of glass to manage Java deployments
 In this example, we'll install a management agent on your host (Linux or Windows) and configure the JMS plugin.
 
 ### Linux Installation Instructions
-First, download the Management Agent.
+First, download the JMS Management Agent.
 
 Login to your JMS instance, from the hamburger choose **Observability & Management** -> **Java Management**.
 
